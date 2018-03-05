@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PingService12" targetNamespace="http://org/apache/axis2/jaxws/samples/ping/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://org/apache/axis2/jaxws/samples/ping/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://org/apache/axis2/jaxws/samples/ping/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+            <xsd:element name="pingStringInput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="pingInput" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="pingOperationRequest">
+    <wsdl:part name="parameter" element="tns:pingStringInput">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PingService12PortType">
+    <wsdl:operation name="pingOperation">
+      <wsdl:input message="tns:pingOperationRequest">
+    </wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PingSOAP12" type="tns:PingService12PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="pingOperation">
+      <soap:operation soapAction="pingOperation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PingService12">
+    <wsdl:port name="PingService12Port" binding="tns:PingSOAP12">
+      <soap:address location="http://localhost:8080/jaxws-samples/services/PingService12"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
